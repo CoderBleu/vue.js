@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn2></cpn2>
+  </div>
+  <script>
+    const cpnC = Vue.extend({
+      template: `
+        <div>
+          <h2>子组件</h2>
+          <h3>我是，哈哈哈哈</h3>
+          <h3>我是，呵呵呵呵</h3>
+        </div>
+      `
+    })
+
+    // 父组件：root组件
+    const cpnC2 = Vue.extend({
+      template: `
+        <div>
+          <h2>父组件</h2>
+          <h3>我是，哈哈哈哈</h3>
+          <h3>我是，呵呵呵呵</h3>
+          // 这个子组件需要先注册
+          <cpn1><cpn1/>
+        </div>
+      `,
+      components: {
+        cpn1: cpnC
+      }
+    })
+
+    // 注册全局组件
+    Vue.component("cpn", cpnC)
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      components: {
+        // 注册局部组件，即只能在app里使用这个组件
+        cpn1: cpnC,
+        cpn2: cpnC2
+      }
+    });
+
+  </script>
+</body>
+
+</html>

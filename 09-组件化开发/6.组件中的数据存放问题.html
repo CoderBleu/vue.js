@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn1">
+    <div>
+      <h2>我是cpn1</h2>
+      <h3>我是，哈哈哈哈</h3>
+      <!-- 想要获取title，必须在组件里面定义一个函数，且有返回值 -->
+      <h3>{{title}}</h3>
+    </div>
+  </template>
+
+
+  <script>
+    // const cpnC = Vue.extend()
+
+    // 语法糖注册全局组件
+    Vue.component("cpn", {
+      // '#cpn' 
+      template: '#cpn1',
+      data() {
+        return {
+          title: '好好学习，天天向上'
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        // 模板里的title不能获取到此值
+        title: '好好学习，天天向上'
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- name要一致，不然选择一个单选框，再选择另一个，之前那个还是被选中状态 -->
+    <label for="male">
+      <input type="radio" name="sex" value="男" id="male" v-model="message">男
+    </label>
+    <label for="female">
+      <input type="radio" name="sex" value="女" id="female" v-model="message">女
+    </label>
+    <br>
+    {{'你选中的值:' + message}}
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      },
+      methods: {
+        
+      }
+    });
+  </script>
+</body>
+
+</html>

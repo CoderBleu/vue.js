@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 下拉框的单个使用 -->
+    <select name="demo" v-model="fruit">
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+      <option value="梨子">梨子</option>
+    </select>
+    <h3>你选择的水果是：{{fruit}}</h3>
+    <br>
+    <!-- 下拉框的多个选中使用: 注意添加multiple，然后选择多个需要按住ctrl键 -->
+    <select name="demo" v-model="fruits" multiple>
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+      <option value="梨子">梨子</option>
+    </select>
+    <h3>你选择的水果是：{{fruits}}</h3>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        fruit: '香蕉',
+        fruits: []
+      },
+      methods: {
+      
+      }
+    });
+  </script>
+</body>
+
+</html>

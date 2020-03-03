@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 单个多选框: 同意协议示范 -->
+    <label v-for="(item, index) in originalHobbies">
+      <!-- 如果绑定originalHobbies，点击下对应的多选框就会消失 -->
+      <input type="checkbox" v-model="hobbies" :id="index+1" :value="item">{{item}}
+    </label>
+    你选择的兴趣爱好是：{{hobbies}}
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isAgree: false, //单选框
+        hobbies: [], //多选框
+        originalHobbies: ['唱', '跳', 'rap', '打篮球']
+      },
+      methods: {
+      
+      }
+    });
+  </script>
+</body>
+
+</html>

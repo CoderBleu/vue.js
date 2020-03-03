@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <cpn></cpn>
+    <cpn1></cpn1>
+  </div>
+
+  <!-- 1.使用script标签：注意类型需要添加：text/x-template -->
+  <script type="text/x-template" id="cpn">
+    <div>
+      <h2>我是cpn1</h2>
+      <h3>我是，哈哈哈哈</h3>
+    </div>
+  </script>
+
+  <!-- 2.使用template标签(推荐) -->
+  <template id="cpn1">
+    <div>
+      <h2>我是cpn1</h2>
+      <h3>我是，哈哈哈哈</h3>
+    </div>
+  </template>
+
+
+  <script>
+    // const cpnC = Vue.extend()
+
+    // 语法糖注册全局组件
+    Vue.component("cpn", {
+      // '#cpn' 
+      template: '#cpn1'
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+      }
+    });
+  </script>
+</body>
+
+</html>

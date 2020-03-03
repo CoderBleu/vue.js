@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 作用域插槽：父组件替换插槽的标签，但是内容由子组件来提供 -->
+  <div id="app">
+    <cpn></cpn>
+    <hr>
+
+    <cpn>
+      哈哈哈哈·
+      <!-- 目标获得子组件中的pLanguages -->
+      <template>
+        <div slot-scope="slot">
+          <span v-for="(item,index) in slot.data">- {{item}} {{item}} - </span>
+          <hr>
+        </div>
+      </template>
+    </cpn>
+    <hr>
+    
+    <cpn>
+      <!-- 目标获得子组件中的pLanguagesv-slot:todo todo指向slot中的name="todo" -->
+      <template v-slot:todo="slotProps">
+        <div>
+          加join()：<span>- {{slotProps.data.join(' - ')}}</span><br>
+          <span>{{slotProps.data}}</span>
+        </div>
+      </template>
+    </cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <!-- :名字="cpn中对应需要获取的值" -->
+      <slot :data="pLanguages"  name="todo">
+        <ul>
+          <li v-for="(item,index) in pLanguages">
+            {{item}}
+          </li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              pLanguages: ['Java', 'C', 'C++', 'Python', 'C#']
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

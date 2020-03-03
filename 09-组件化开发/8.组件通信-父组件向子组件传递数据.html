@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{movies.toString()}}
+    <hr>
+    <!-- 添加了前缀v-bind，vue会帮我们解析movies，不会当成字符串处理 -->
+    <cpn v-bind:vmoives="movies" :vmessage="message"></cpn>
+    <hr>
+    <!-- 当成字符串处理 -->
+    <cpn vmoives="movies" vmessage="message"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>{{vmessage}}</h2>
+      <ul v-for="(item,index) in vmoives">
+        <li>{{index}}.{{item}}</li>
+      </ul>
+    </div>
+  </template>
+
+  <script>
+    const cpn = {
+      template: '#cpn',
+      props: ['vmoives', 'vmessage'], //这种其实是表示变量名字，不能当成字符串
+      data() {
+        return {}
+      },
+      methods: {
+
+      }
+    }
+
+    // 注册全局组件
+    // Vue.component('cpn', cpn)
+    
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['海王', '海贼王', '航空母舰'],
+        message: '真香'
+      },
+      components: {
+        // ES6中的高阶写法，等同于 cpn: cpn
+        cpn
+      }
+    });
+  </script>
+</body>
+
+</html>

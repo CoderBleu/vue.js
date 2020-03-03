@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{movies.toString()}}
+    <hr>
+    <cpn v-bind:propF="movies" :propC="message"></cpn>
+    <hr>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>{{propC}}</h2>
+      <ul v-for="(item,index) in propF">
+        <li>{{index}}.{{item}}</li>
+      </ul>
+    </div>
+  </template>
+
+  <script>
+    const cpn = {
+      template: '#cpn',
+      props: {
+        // 基础的类型检查('null'匹配任何类型)
+        propA: Number,
+        // 多个可能的类型
+        propB: [String, Number],
+        // 必填的字符串
+        propC: {
+          type: String,
+          required: true,
+          default: '你好呀'
+        },
+        // 带有默认值的数字
+        propD: {
+          type: Number,
+          default: 100
+        },
+        // 注意：类型是对象/数组时，默认值必须是一个函数
+        // 带有默认值的对象
+        propE: {
+          type: Object,
+          default: function () {
+            return {
+              message: 'hello'
+            }
+          }
+        },
+        // 带有默认值的对象
+        propF: {
+          type: Array,
+          default() {
+            return ['大话西游', '造梦西游']
+          }
+        },
+        // 自定义验证函数
+        propG: {
+          validator: function (value) {
+            // 这个值必须匹配下列字符串的一个
+            return ['success', 'warning', 'danger'].indexOf(value) !== -1
+          }
+        }
+      },
+      data() {
+        return {}
+      }
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['海王', '海贼王', '航空母舰'],
+        message: '真香'
+      },
+      components: {
+        cpn
+      }
+    });
+  </script>
+</body>
+
+</html>

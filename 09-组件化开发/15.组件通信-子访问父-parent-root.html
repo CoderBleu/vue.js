@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <hr>
+    <ccpn></ccpn>
+  </div>
+
+  <template id="cpn">
+    <div>我是cpn子组件</div>
+  </template>
+
+  <!-- cpn的子组件 -->
+  <template id="ccpn">
+    <div>
+      <h3>我是cpn的子组件</h3>
+      <button @click="btnClick">ccpn按钮</button>
+    </div>
+  </template>
+
+  <script>
+    const ccpn = Vue.component('ccpn', {
+              template: '#ccpn',
+              methods: {
+                btnClick() {
+                  // 按理这个是cpn的子组件，this应该指ccpn对象，
+                  // 调用this.$parent时，访问的是ccpn的父组件cpn，即返回对象是vuecomponents
+                  // 调用this.$root时，访问的才应该是cpn的父组件，即返回对象是vue
+                  // 可是我放在cpn的components里说ccpn没有注册
+                  console.log('ccpn=', this.$root.message)
+                }
+              }
+            })
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Lemon'
+      },
+      methods: {
+
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              name: '我是cpn的name'
+            }
+          },
+          components: {
+            ccpn
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

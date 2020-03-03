@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <div id="app2">
+    <cpn></cpn>
+  </div>
+  <script>
+    const cpnC = Vue.extend({
+      template: `
+        <div>
+          <h2>组件化</h2>
+          <h3>我是，哈哈哈哈</h3>
+          <h3>我是，呵呵呵呵</h3>
+        </div>
+      `
+    })
+
+    // 注册全局组件
+    Vue.component("cpn", cpnC)
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      components: {
+        // 注册局部组件，即只能在app里使用cpn这个组件
+        cpn: cpnC
+      }
+    });
+
+    const app2 = new Vue({
+      el: '#app2',
+    });
+  </script>
+</body>
+
+</html>

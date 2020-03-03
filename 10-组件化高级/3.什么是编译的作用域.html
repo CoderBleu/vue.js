@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 总结：
+  父组件模板的所有东西都会在父级作用域内编译
+  子组件模板的所有东西都会在子级作用域内编译 -->
+  <div id="app">
+    <!-- 这个里面的isShow会先从所在模板里面顺下去找，即从Vue里找寻，
+    因此Vue中的data的isShow才能影响显示与否 -->
+    <cpn v-show="isShow"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>我是组件</h2>
+      <!-- 这个里面的isShowCpn会先从所在模板里面顺下去找，即从cpn里找寻， -->
+      <h3 v-show="isShowCpn">我是哈哈哈</h3>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      },
+      methods: {
+
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              isShow: false,
+              isShowCpn: true
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

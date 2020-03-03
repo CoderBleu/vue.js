@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn ref="refA"></cpn>
+    <button @click="btnClick">按钮</button>
+  </div>
+
+  <template id="cpn">
+    <div>
+      我是子组件
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Lemon'
+      },
+      methods: {
+        btnClick() {
+          // 1. $.chlidren
+          for (let item of this.$children) {
+            console.log(item.name);
+            item.showMessage()
+          }
+
+          // 2. $.refs: 仅仅会调动带有refs标示的
+          // 这样有时候我们想即使在新增数据后，依旧能操控它
+          console.log('refs' + this.$refs.refA.name);
+        }
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              name: 'Lemon',
+              id: 1,
+              height: 1.78
+            }
+          },
+          methods: {
+            showMessage() {
+              console.log(this.id);
+            }
+          },
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

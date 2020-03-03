@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div v-if="isFull">
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>书名</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in books" :class="{changeColor: number == 1}" @mouseenter="change(index)"
+            @mouseleave="remove(index)">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <!-- 使用函数：<td>{{getfinalPrice(item.price)}}</td> -->
+            <!-- 使用过滤器： -->
+            <td>{{item.price | showPrice}}</td>
+            <td>
+              <button @click="subBtn(index)">-</button>
+              {{item.count}}
+              <button @click="addBtn(index)">+</button>
+            </td>
+            <td>
+              <button v-if="exchange" @click="addItemBtn(index)">新增</button>
+              <button v-else @click="removeBtn(index)">移除</button>
+              <button @click="changeType()">切换类型</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <span>总价格：{{showTotalPrice | showPrice}}</span>
+    </div>
+    <h2 v-else>购物车清空</h2>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script src="main.js"></script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+  </div>
+
+  <script>
+    // 创建组件构造器
+    const cpnC = Vue.extend({
+      // ES6语法：` 号可以支持内容里面换行比 ''更好使用
+      //如果有多个标签使用,必须有个div包裹起来，否则内容显示不完全
+      template: `
+        <div>
+          <h2>组件化</h2>
+          <h3>我是，哈哈哈哈</h3>
+          <h3>我是，呵呵呵呵</h3>
+        </div>
+      `
+    })
+    // 注册组件
+    Vue.component('my-cpn', cpnC)
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+
+      }
+    });
+  </script>
+</body>
+
+</html>

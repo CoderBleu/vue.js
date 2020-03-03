@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Promise.all([
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // resolve('result1')
+          resolve({name: 'why', age: 18})
+        }, 2000)
+      }),
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // resolve('result2')
+          resolve({name: 'blue', age: 19})
+        }, 1000)
+      })
+    ]).then(results => {
+      console.log(results)
+    })
+  </script>
+</body>
+</html>

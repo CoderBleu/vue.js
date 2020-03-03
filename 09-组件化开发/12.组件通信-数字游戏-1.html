@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn :number1="num1" :number2="num2"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>双向绑定的是num1:{{dnum1}}</h2>
+      <h2>props:{{number1}}</h2>
+      <input type="text" v-model="dnum1">
+      <h2>双向绑定的是num2:{{dnum2}}</h2>
+      <h2>props:{{number2}}</h2>
+      <input type="text"  v-model="dnum2">
+    </div>
+  </template>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        num1: 0,
+        num2: 1
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          props: {
+            number1: Number,
+            number2: Number
+          },
+          data() {
+            return {
+              /* 
+              Property or method "num2" is not defined on the instance but referenced during render.
+              Make sure that this property is reactive, either in the data option, 
+              or for class-based components, by initializing the property
+              即需要添加data(){}
+              */
+              dnum1: this.number1,
+              dnum2: this.number2
+            }
+          }
+        }
+      },
+      methods: {
+
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.lazy修饰符: 懒加载，可以让数据被按下回车失去焦点后才会更新 -->
+    <input type="text" v-model.lazy="message">{{message}}
+    <hr>
+    <!-- 2.number修饰符：可以将 只能输入数字 的类型转换成String -->
+    <input type="number" v-model="age"> 
+    <h3>{{age}}--{{typeof age}}</h3>
+    <!-- 如果不想转换成String类型，只要添加 .number -->
+    <input type="number" v-model.number="height"> 
+    <h3>{{height}}--{{typeof height}}</h3>
+    <hr>
+    <!-- 3.去掉两端的空格 -->
+    <input type="text" v-model.trim="name"> 
+    <!-- 添加多个修饰符只需叠加后面就行，无先后顺序要求 -->
+    <input type="number" v-model.lazy.number="height"> 
+    <h3>{{name}}</h3>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀',
+        age: 0,
+        height: 1,
+        name: ''
+      },
+      methods: {
+      
+      }
+    });
+  </script>
+</body>
+
+</html>

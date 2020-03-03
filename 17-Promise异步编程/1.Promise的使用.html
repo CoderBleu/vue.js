@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 参数 -> 函数(resolve, reject)
+    // resolve, reject本身它们又是函数
+    // 链式编程
+    new Promise((resolve, reject) => {
+
+      // 第一次网路请求的代码 
+      setTimeout(() => {
+        resolve()
+      }, 2000)
+    }).then(() => {
+      console.log('Hello World');
+      console.log('Hello World');
+      console.log('Hello World');
+      console.log('Hello World');
+      console.log('Hello World');
+
+      return new Promise((resolve, reject) => {
+
+        // 第二次网络请求的代码
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      })
+    }).then(() => {
+      // 第二次处理的代码
+      console.log('Hello Vue.js');
+      console.log('Hello Vue.js');
+      console.log('Hello Vue.js');
+      console.log('Hello Vue.js');
+      console.log('Hello Vue.js');
+
+      return new Promise((resolve, reject) => {
+
+        // 第三次网络请求的代码
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      })
+    }).then(() => {
+      // 第三次处理的代码
+      console.log('Hello css');
+      console.log('Hello css');
+      console.log('Hello css');
+      console.log('Hello css');
+      console.log('Hello css');
+    })
+
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // 成功的时候
+        resolve('异步传数据')
+
+        // 失败的时候
+        // reject('error message')
+      }, 5000)
+    // .then((data) => 只有一个参数,data括号可以省略
+    }).then((data) => {
+      console.log('成功反馈');
+      console.log(data);
+      console.log(data);
+      console.log(data);
+      console.log(data);
+      console.log(data);
+    }).catch(err => {
+      // 捕获错误信息
+      console.log('错误信息');
+      console.log(err);
+      console.log(err);
+      console.log(err);
+      console.log(err);
+      console.log(err);
+    })
+  </script>
+
+  <!-- 什么情况下用到Promise? -->
+  <!-- 
+  一般情况下是有异步操作时,使用Promise对这个异步操作进行封装 
+  new -> 构造函数(1.保存了一些状态信息 2.执行传入的函数)
+  在执行传入的回调函数时,会传入两个参数,resolve,reject,本身又是函数
+  -->
+
+</body>
+
+</html>

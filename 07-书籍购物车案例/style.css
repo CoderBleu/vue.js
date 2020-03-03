@@ -1,0 +1,24 @@
+table {
+  border: 1px solid #cccccc;
+  /* 消除表格的边框内距 */
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 700px;
+}
+table thead {
+  background-color: lightskyblue;
+}
+/* table tr:hover {
+  background-color: pink;
+} */
+table tr th {
+  border: 1px solid #cccccc;
+}
+table tr td {
+  border: 1px solid #cccccc;
+  text-align: center;
+  padding: 20px;
+}
+.changeColor {
+  background-color: #cae6e6
+} 

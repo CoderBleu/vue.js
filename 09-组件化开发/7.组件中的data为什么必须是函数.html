@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <hr>
+    <cpn1></cpn1>
+    <cpn1></cpn1>
+  </div>
+
+  <template id="cpn1">
+    <div>
+      <h3>当前计数：{{count}}</h3>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    </div>
+  </template>
+
+  <template id="cpn2">
+    <div>
+      <h3>当前计数：{{count}}</h3>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    </div>
+  </template>
+
+  <script>
+    // 推荐：count数据不会共享
+    // 使用data函数：不会引起连锁反应。即每个都是个新对象，值地址不一样，
+    Vue.component("cpn", {
+      // '#cpn' 
+      template: '#cpn1',
+      data() {
+        return {
+          count: 0
+        }
+      },
+      methods: {
+        increment() {
+          this.count++
+        },
+        decrement() {
+          this.count--
+        }
+      }
+    })
+
+    // count数据共享
+    // 都是使用的这个obj常量
+    const obj = {
+      count: 0
+    };
+    Vue.component("cpn1", {
+      // '#cpn' 
+      template: '#cpn2',
+      data() {
+        return obj
+      },
+      methods: {
+        increment() {
+          this.count++
+        },
+        decrement() {
+          this.count--
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+    });
+  </script>
+</body>
+
+</html>

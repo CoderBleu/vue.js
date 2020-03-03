@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+  </div>
+  <script>
+    // const cpnC = Vue.extend()
+
+    // 语法糖注册全局组件
+    Vue.component("cpn1", {
+      template: `
+        <div>
+          <h2>我是cpn1</h2>
+          <h3>我是，哈哈哈哈</h3>
+        </div>
+      `
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      components: {
+        // 语法糖注册局部组件，即只能在app里使用这个组件
+        'cpn2': {
+          template: `
+          <div>
+            <h2>我是cpn2</h2>
+            <h3>我是，呵呵呵呵</h3>
+          </div>
+        `
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>
