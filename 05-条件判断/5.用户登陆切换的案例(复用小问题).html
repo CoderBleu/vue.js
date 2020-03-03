@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+      注意：Vue在进行DOM渲染时，出于性能考虑，会尽可能的复用先前的input框，而不是重新创建元素
+      如若我们不需要复用input框，只需要添加一个 key就好，相同的key值才会复用
+    -->
+    <span v-if="isShowUserName">
+      <!-- label中的for指向input后，点击label可以将光标聚焦给input框 -->
+      <label for="userName">用户名</label>
+      <input type="text" id="userName" placeholder="请输入用户名" key="userName">
+    </span>
+    <span v-else>
+      <label for="email">用户邮箱</label>
+      <input type="text" id="email" placeholder="请输入用户邮箱" key="userName">
+    </span>
+    <button @click="isShowUser">切换类型1</button>
+  </div>
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        isShowUserName: true
+      },
+      methods: {
+        isShowUser() {
+          this.isShowUserName = !this.isShowUserName,
+          //第二种方式：使用js将input框值清空
+          document.getElementById("userName").value = '';
+          document.getElementById("email").value = '';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1. 通过字符串直接拼接,不美观 -->
+    <h3> {{fisrtName}} {{lastName}}</h3>
+    <!-- 2. 通过方法：调用方法一次就重新执行一次 -->
+    <h3> {{getFullName()}}</h3>
+    <!-- 3. 通过计算属性：执行一次后，会将此缓存起来，后面在调用会直接有结果显示，不会频繁调用 -->
+    <h3> {{fullName}}</h3>
+  </div>
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        fisrtName: 'Lom',
+        lastName: 'Name'
+      },
+      methods: {
+        getFullName: function(){
+          console.log("fullName");
+          return this.fisrtName + ' ' + this.lastName;
+        }
+      },
+      computed: {
+        fullName: {
+          get: function () {
+            console.log("fullName");
+            return this.fisrtName + ' ' + this.lastName;
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

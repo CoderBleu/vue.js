@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+    1.app.obj.splice(4) 去除数组第五个值
+    2.app.obj.splice(3,0,'F') 在数组第四个值的时候添加F
+  -->
+  <div id="app">
+    <ul>
+      <!-- 不添加key属性: 在数组中间插入数据，需要将插入位置后面的值都后移，效率慢 -->
+      <!-- 添加key属性：类似于链表一样，我插入中间只需要将两端值的指向指给我，效率高-->
+      <li v-for="item in obj" :key="item">{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        obj: ['A', 'B', 'C', 'D', 'E']
+      },
+      methods: {
+      
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.简单遍历数组 -->
+    <ul>
+      <li v-for="item in movies">{{item}}</li>
+    </ul>
+    <br>
+    <!-- 2.带索引遍历数组 -->
+    <ul>
+      <li v-for="(item, index) in movies">{{index + 1}}.{{item}}</li>
+    </ul>
+    <br>
+    <!-- 3.带索引遍历数组，且添加监听事件 -->
+    <ul>
+      <li v-for="(item, index) in movies" @click="showIndex(index)">{{index + 1}}.{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['海王', '大话西游', '星际争霸', '三傻大闹宝莱坞']
+      },
+      methods: {
+        showIndex(index) {
+          console.log('第' + (index + 1) + '个值');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

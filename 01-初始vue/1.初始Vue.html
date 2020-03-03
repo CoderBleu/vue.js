@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>初始Vue</title>
+</head>
+<body>
+  <script src="../js/vue.js"></script>
+  <div id="hi">Hello {{name}}</div>
+  <div class="movie">
+      <ul>
+          <li v-for="item in movies">
+              {{item}}
+          </li>
+      </ul>
+  </div>
+  <script>
+      const hi = new Vue({
+          el: "#hi",
+          data: {
+              name: 'Vue.js'
+          }
+      })
+
+      let movie = new Vue({
+          el: '.movie',
+          data: {
+              movies: ["星际穿越", '大话西游', '海贼王之黄金城', '复仇者联盟']
+              // 注意：可以通过movie.movies.push('盗梦空间')
+          }
+      })
+  </script>
+</body>
+</html>

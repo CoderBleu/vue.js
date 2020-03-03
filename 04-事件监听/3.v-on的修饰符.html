@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1. .stop修饰符的使用：阻止单击事件继续传播给后续定义的函数 -->
+    <div @click="divClick">
+      <button @click.stop="btnClick">点击</button>
+    </div>
+
+    <!-- 2. .prevent修饰符的使用：阻止事件的自带默认行为， -->
+    <form action="">
+      <input type="submit" value="提交" @click.prevent="submitClick"></button>
+    </form>
+
+    <!-- 3. .keyup修饰符的使用：当键盘被释放时触发事件 -->
+    <input @keyup="keyup">松开</input>
+    <br>
+    <input @click.keyup="keyup">鼠标点击松开</input>
+
+    <br>
+    <!-- 3. .enter修饰符的使用：当键盘按下回车键触发事件 -->
+    <input @keyup.enter="enter">回车</input>
+
+    <br>
+    <!-- 4. .once修饰符的使用: 只能触发一次回调 -->
+    <button @click.once="once">只能点击一次</button>
+  </div>
+    
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+        btnClick(){
+          console.log("btnClick")
+        },
+        divClick(){
+          console.log("divClick")
+        },
+        submitClick(){
+          console.log("submitClick")
+        },
+        keyup(){
+          console.log("keyup")
+        },
+        enter(){
+          console.log("enter")
+        },
+        once(){
+          console.log("once")
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

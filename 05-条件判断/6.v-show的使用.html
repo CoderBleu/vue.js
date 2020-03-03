@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+      v-if 和 v-show的区别：
+      v-if为false的时候，压根不会存在dom里面，
+      v-show为false的时候，只是会增加个行内样式：display：none；
+
+      建议：
+      如果需要频繁切换的时候，使用v-show，
+      只有一次切换时通常使用v-if
+     -->
+    <span v-if="isShow" id="isShow">V-if</span>
+    <span v-show="isShow" id="VShow">V-show</span>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      },
+      methods: {
+      
+      }
+    });
+  </script>
+</body>
+
+</html>

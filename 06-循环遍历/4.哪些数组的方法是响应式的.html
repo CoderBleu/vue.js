@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in obj" :key="item">{{item}}</li>
+    </ul>
+    <button @click="btnClick">点击</button>
+  </div>
+
+  <script>
+    let myDate = new Date();
+    const app = new Vue({
+      el: '#app',
+      data: {
+        obj: ['R', 'C', 'B', 'D', 'E'],
+      },
+      methods: {
+        btnClick() {
+          //1.push()方法
+          // this.obj.push('F')
+          //2.pop()方法，从末尾依次删除
+          // this.obj.pop()
+          //3.shift()方法，从头开始依次删除
+          // this.obj.shift()
+          //4.unshift()，从头开始依次添加元素
+          // this.obj.unshift('G','L')
+          //5.splice()，方法向/从数组中添加/删除/替换元素，然后返回被删除的项目。
+          //this.obj.splice(4) //去除数组第五个值
+          //6.sort()，对数组的元素进行排序
+          // this.obj.sort()
+          //7.reverse()，对数组进行反转
+          // this.obj.reverse()
+
+          //注意：通过索引值修改数组中的元素方法，不可取，vue不会帮我渲染修改后的值
+          // this.obj[0] = 'M'
+          //解决方法：
+          //删除第五个
+          // this.obj.splice(3, 4, 'N')
+          //①：在第三个位置修改成 N
+          // this.obj.splice(2, 1, 'N')
+          //②：建议：Vue自带的修改方法
+          Vue.set(this.obj, 2, 'G')
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

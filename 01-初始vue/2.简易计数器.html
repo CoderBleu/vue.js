@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易计数器</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!-- view -->
+<div id="count">
+    <h2>{{counter}}</h2>
+    <button v-on:click="add">+</button>
+    <button v-on:click="sub">-</button>
+    <!-- <button v-on:click="counter++">+</button>
+    <button v-on:click="counter--">-</button> -->
+</div>
+<ol>
+    <li>原因是你的body中的div中没有设置id，vue没有绑定</li>
+    <li>解决：body中加 div id="app" </li>
+    <li>双向绑定：view，model，ViewModel</li>
+</ol>
+</body>
+<script>
+    // proxy: model
+    const obj = {
+        counter: 0
+    }
+
+    // ViewModel
+    let count = new Vue({
+        el: "#count",
+        data: obj,
+        methods: {
+            add: function() {
+                this.counter++;
+            },
+            sub: function(){
+                this.counter--;
+            }
+        }
+    })
+</script>
+</html>

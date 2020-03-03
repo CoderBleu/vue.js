@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <!-- 对遍历出来的结果列表，我能实现点击列表对应的值，能让它变成红色 -->
+      <li v-for="(item, index) in obj" :key="item"
+        :class="{active: currentIndex === index}" @click="changeColor(index)">{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+    let myDate = new Date();
+    const app = new Vue({
+      el: '#app',
+      data: {
+        obj: ['R', 'C', 'B', 'D', 'E'],
+        currentIndex: 0
+      },
+      methods: {
+        changeColor(index) {
+          this.currentIndex = index;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

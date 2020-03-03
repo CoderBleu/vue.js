@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 不需要传参数，故函数的双括号可以省略 -->
+        <button @click="btn0Click">+</button>
+        <!-- 不传参数，会显示event对象 -->
+        <button @click="btn1Click()">+</button>
+        <!-- 带括号传参数 -->
+        <button @click="btn2Click(value)">+</button>
+        <!-- 定义方法时，我们既需要传参数，又需要获取到event对象，可以通过$event获得event对象 -->
+        <button @click="btn3Click(value, $event)">+</button>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                value: 13
+            },
+            methods: {
+                btn0Click() {
+                    console.log("btn1Click");
+                },
+                btn1Click() {
+                    console.log("======", event);
+                },
+                btn2Click(value) {
+                    console.log("------", value);
+                },
+                btn3Click(value, event) {
+                    console.log("+++++", value, event);
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
