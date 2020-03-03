@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+</head>
+
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+</body>
+
+<script>
+    let btns = document.getElementsByTagName('button');
+
+    //方式1（错误方法）：var全局变量，没有块级作用域
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', function () {
+            console.log('第' + i + '个按钮被点击了');
+        })
+    }
+
+    //方式2：使用闭包
+    for (var i = 0; i < btns.length; i++) {
+        (function (i) {
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击了');
+            })
+        })(i)
+    }
+
+    // 方式3. 使用ES6中的let
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].onclick = function(){
+            console.log('第' + i + '个按钮被点击了');
+        }
+    }
+
+    //详解：
+    // function(i) { //i = 0，点击第一次
+    //     btns[i].addEventListener('click', function(){
+    //         console.log('第' + i + '个按钮被点击了');
+    //     })
+    // }
+    // function(i) { 
+    //     //i = 1,点击第二次。
+    //       ①：由于使用的是var，前面i = 0的函数里i又会被重新赋值成i = 1，故点击五次后，不论点击哪个按钮，都是打印的第5个按钮被点击
+    //       ②：闭包方式，此循环的函数调用完后，会寻找i，然后由于是闭包形式，此i就相当于局部变量使用，其他循环下的i不相互影响
+    //       ③：let方式：局部变量，有作用域范围
+    //     btns[i].addEventListener('click', function(){
+    //         console.log('第' + i + '个按钮被点击了');
+    //     })
+    // }
+</script>
+
+</html>

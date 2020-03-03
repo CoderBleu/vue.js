@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //1.属性的增强写法
+    const name = 'lemon';
+    const age = 18;
+    const height = 1.88;
+
+    //ES5的写法
+    const obj1 = {
+      name: name,
+      age: age,
+      height: height
+    }
+
+    //ES6的写法
+    const obj2 = {
+      name,
+      age,
+      height
+    }
+
+    //2.方法的简写：
+    //ES6之前
+    let obj1 = {
+      test: function () {
+        console.log("");
+      }
+    }
+
+    //ES6的写法
+    let obj2 = {
+      test() {
+        console.log("")
+      }
+    }
+  </script>
+</body>
+
+</html>
